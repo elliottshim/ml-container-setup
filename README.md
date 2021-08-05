@@ -63,3 +63,17 @@ docker run -ti mytag bash
 # Run with GPU passthrough 
 docker run -ti --gpus all mytag bash 
 ```
+
+## Accessing Jupyter from Remote Server
+Run the following commands
+```sh
+ssh -L 8000:localhost:8000 user@000.000.00.00
+```
+```shf
+sudo nvidia-docker run -it -p 8000:8000 mytag bash
+```
+```sh
+jupyter notebook --ip 0.0.0.0 --port 8000 --allow-root
+```
+Copy and paste Jupyter URL into browswer!
+
