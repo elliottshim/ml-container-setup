@@ -65,15 +65,22 @@ docker run -ti --gpus all mytag bash
 ```
 
 ## Accessing Jupyter from Remote Server
-Run the following commands
+Run the following commands:
+Local port forwarding using -L flag
 ```sh
 ssh -L 8000:localhost:8000 user@000.000.00.00
 ```
+Run container with local folder mounted to docker container folder. Example below shows path to local folder named stack1 mounted to a newly created folder stack1 in the Docker container's root directory. Files in local directory show up in the root directory of Docker container.
 ```shf
-sudo nvidia-docker run -it -p 8000:8000 mytag bash
+sudo nvidia-docker run -v /root/docker_envs/stack1:/root/stack1 -it -p 8000:8000 mytag bash
 ```
+Activate conda environment
+```shf
+source activate myenv
+```
+
+
+Open Jupyter Notebook, copy and paste Jupyter URL into browswer, and enjoy your new workflow!
 ```sh
 jupyter notebook --ip 0.0.0.0 --port 8000 --allow-root
 ```
-Copy and paste Jupyter URL into browswer!
-
